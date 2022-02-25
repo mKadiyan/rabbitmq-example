@@ -1,19 +1,13 @@
 package com.poc.sender.model;
 
-public class Notification {
-    private String email;
+public class Message {
     private String message;
 
-    public Notification() {
+    public Message() {
     }
 
-    public Notification(String email, String message) {
-        this.email = email;
+    public Message(String message) {
         this.message = message;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getMessage() {
@@ -22,9 +16,8 @@ public class Notification {
 
     @Override
     public String toString() {
-        return "Notification{" +
-                "email='" + email + '\'' +
-                ", message='" + message + '\'' +
+        return "Message{" +
+                "message='" + message + '\'' +
                 '}';
     }
 }

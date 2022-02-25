@@ -1,6 +1,6 @@
 package com.poc.sender;
 
-import com.poc.sender.model.Notification;
+import com.poc.sender.model.Message;
 import com.poc.sender.service.RabbitMQSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +20,7 @@ public class RabbitmqSenderApplication implements CommandLineRunner {
 
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         process("Sender-1");
 
         process("Sender-2");
@@ -33,9 +33,8 @@ public class RabbitmqSenderApplication implements CommandLineRunner {
         new Thread(() -> {
             Random random = new Random();
             for (long i = 0; ; i++) {
-                String email = Thread.currentThread().getName() + "@mail.com";
-                String message = "You have a new notification with no " + i;
-                rabbitMQSender.send(new Notification(email, message));
+                String message = "You have a new message with no " + i;
+                rabbitMQSender.send(new Message(message));
 
                 try {
                     Thread.sleep(random.nextInt((15000 - 4000) + 1) + 4000);
